@@ -1,24 +1,53 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import About from './components/About';
+import Projects from './components/Projects';
+import Skills from './components/Skills';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import ThemeContext from './context/ThemeContext';
 import './App.css';
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  // Track scroll position for animations
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Toggle theme
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
+      <div className={`app ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+        <div className="background">
+          <div className="particles"></div>
+          <div className="gradient-bg"></div>
+        </div>
+        
+        <Header scrollY={scrollY} />
+        
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Skills />
+          <Contact />
+        </main>
+        
+        <Footer />
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
