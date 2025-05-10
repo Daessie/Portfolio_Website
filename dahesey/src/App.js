@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header'
+import Header from '../components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import ThemeContext from './context/ThemeContext';
+// import Skills from '/Users/m2chip/Portfolio_Website/dahesey/components/Skills';
+// import Contact from '/Users/m2chip/Portfolio_Website/dahesey/components/Contact';
+// import Footer from '/Users/m2chip/Portfolio_Website/dahesey/components/Footer';
+import ThemeContext from './components/ThemeContext';
 import './App.css';
 
 function App() {
